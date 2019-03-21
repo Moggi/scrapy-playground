@@ -4,22 +4,17 @@ import scrapy
 class QuotesSpider(scrapy.Spider):
     name = "quotes"
     allowed_domains = ['quotes.toscrape.com']
-    start_urls = [
-        'http://quotes.toscrape.com/page/1/',
-        'http://quotes.toscrape.com/page/2/',
-    ]
-
-    # def start_requests(self):
-    #     urls = [
-    #         'http://quotes.toscrape.com/page/1/',
-    #         'http://quotes.toscrape.com/page/2/',
-    #     ]
-    #     for url in urls:
-    #         yield scrapy.Request(url=url, callback=self.parse)
+    start_urls = ['http://quotes.toscrape.com/']
 
     def parse(self, response):
-        page_name = response.url.split("/")[-2]
-        filename = 'quotes-%s.html' % page_name
-        with open(filename, 'wb') as f:
-            f.write(response.body)
-        self.log('Saved file %s' % filename)
+        """Scrap all quotes from the page and follow all links"""
+        for quote in response.css('div.quote'):
+            yield {
+                'text': quote.css('span.text::text').get(),
+                'author': quote.css('small.author::text').get(),
+                'tags': quote.css('div.tags a.tag::text').getall(),
+            }
+
+        # next_page = response.css('li.next a::attr(href)').get()
+        for _a in response.css('li.next a'):
+            yield response.follow(_a, callback=self.parse)
