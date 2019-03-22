@@ -15,6 +15,5 @@ class QuotesSpider(scrapy.Spider):
                 'tags': quote.css('div.tags a.tag::text').getall(),
             }
 
-        # next_page = response.css('li.next a::attr(href)').get()
-        for _a in response.css('li.next a'):
-            yield response.follow(_a, callback=self.parse)
+        # for _a in response.css('li.next a'):
+        #     yield response.follow(_a, callback=self.parse)
