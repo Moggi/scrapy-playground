@@ -1,6 +1,8 @@
 import unittest
-from spiders.quotes import QuotesSpider
-from tests.responses import fake_response_from_file
+from scrapy import Request
+from tutorial.items import QuotesItem
+from tutorial.spiders.quotes import QuotesSpider
+from tutorial.tests.responses import fake_response_from_file
 
 
 class TestQuotesSpider(unittest.TestCase):
@@ -11,12 +13,17 @@ class TestQuotesSpider(unittest.TestCase):
 
     def test_parse(self):
         """Test all itens from response"""
-        s = [
+        test_cases = [
             'quotes.toscrape.snippet.html',
         ]
-        results = self.spider.parse(fake_response_from_file(s[0]))
+        results = self.spider.parse(fake_response_from_file(test_cases[0]))
+
         for item in results:
-            self.assertIsNotNone(item['text'])
-            self.assertIsNotNone(item['author'])
-            self.assertIsNotNone(item['tags'])
-            self.assertIsInstance(item['tags'], list)
+            if isinstance(item, QuotesItem):
+                self.assertIsInstance(item, QuotesItem)
+                self.assertIsNotNone(item['text'])
+                self.assertIsNotNone(item['author'])
+                self.assertIsNotNone(item['tags'])
+                self.assertIsInstance(item['tags'], list)
+            else:
+                self.assertIsInstance(item, Request)
