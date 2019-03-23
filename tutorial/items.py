@@ -12,3 +12,11 @@ class QuotesItem(scrapy.Item):
     text = scrapy.Field()
     author = scrapy.Field()
     tags = scrapy.Field()
+
+
+class BooksItem(scrapy.Item):
+    title = scrapy.Field()
+    price = scrapy.Field()
+    image_url = scrapy.Field()
+    rating = scrapy.Field()
+    description = scrapy.Field(serializer=str)
