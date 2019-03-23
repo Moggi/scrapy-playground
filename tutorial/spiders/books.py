@@ -21,4 +21,6 @@ class BooksSpider(scrapy.Spider):
         yield Request(next_page_url_absolute)
 
     def parse_book(self, response):
-        pass
+        yield {
+            '': ''
+        }
