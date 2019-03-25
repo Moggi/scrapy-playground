@@ -17,7 +17,8 @@ class QuotesItem(scrapy.Item):
 class BooksItem(scrapy.Item):
     title = scrapy.Field()
     price = scrapy.Field()
-    image_url = scrapy.Field()
+    image_urls = scrapy.Field()
+    images = scrapy.Field()
     rating = scrapy.Field()
     description = scrapy.Field(serializer=str)
     upc = scrapy.Field()

@@ -1,4 +1,7 @@
 # -*- coding: utf-8 -*-
+import os
+
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Scrapy settings for tutorial project
 #
@@ -67,9 +70,12 @@ DOWNLOAD_DELAY = 0.125
 
 # Configure item pipelines
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
-#ITEM_PIPELINES = {
-#    'tutorial.pipelines.TutorialPipeline': 300,
-#}
+ITEM_PIPELINES = {
+   'scrapy.pipelines.images.ImagesPipeline': 30,
+}
+
+IMAGES_STORE = os.path.join(BASE_DIR, 'media')
+
 
 # Enable and configure the AutoThrottle extension (disabled by default)
 # See https://doc.scrapy.org/en/latest/topics/autothrottle.html

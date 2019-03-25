@@ -24,25 +24,22 @@ class TestBooksSpider(unittest.TestCase):
         page = 'book1.toscrape.snippet.html'
         test_cases = [
             BooksItem(
-                title='A Light in the Attic',
-                price='£51.77',
-                image_url=(
-                    f'''http://books.toscrape.com/media/cache/fe/72/fe72f053'''
-                    f'''2301ec28892ae79a629a293c.jpg'''
-                ),
-                rating='Three',
-                description=(
+                title=['A Light in the Attic'],
+                price=['£51.77'],
+                image_urls=[''],
+                rating=['Three'],
+                description=[(
                     f'''It's hard to imagine a world without A Light in '''
                     f'''the Attic. This now-classic collection of poetry '''
                     f'''and drawings ...'''
-                ),
-                upc='a897fe39b1053632',
-                product_type='Books',
-                price_without_tax='£51.77',
-                price_with_tax='£51.77',
-                tax='£0.00',
-                availability='In stock (22 available)',
-                number_of_review='0'
+                )],
+                upc=['a897fe39b1053632'],
+                product_type=['Books'],
+                price_without_tax=['£51.77'],
+                price_with_tax=['£51.77'],
+                tax=['£0.00'],
+                availability=['In stock (22 available)'],
+                number_of_review=['0']
             )
             # BooksItem(''),
         ]
