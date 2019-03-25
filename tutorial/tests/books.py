@@ -9,7 +9,7 @@ class TestBooksSpider(unittest.TestCase):
 
     def setUp(self):
         """Instantiate the crawler every test"""
-        self.spider = BooksSpider()
+        self.spider = BooksSpider(category='http://books.toscrape.com/')
 
     def test_parse(self):
         """Test it we only get Request objects"""
@@ -35,7 +35,14 @@ class TestBooksSpider(unittest.TestCase):
                     f'''It's hard to imagine a world without A Light in '''
                     f'''the Attic. This now-classic collection of poetry '''
                     f'''and drawings ...'''
-                )
+                ),
+                upc='a897fe39b1053632',
+                product_type='Books',
+                price_without_tax='£51.77',
+                price_with_tax='£51.77',
+                tax='£0.00',
+                availability='In stock (22 available)',
+                number_of_review='0'
             )
             # BooksItem(''),
         ]
