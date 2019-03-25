@@ -27,3 +27,9 @@ class BooksItem(scrapy.Item):
     tax = scrapy.Field()
     availability = scrapy.Field()
     number_of_review = scrapy.Field()
+
+
+class AuthorsItem(scrapy.Item):
+    name = scrapy.Field()
+    birthdate = scrapy.Field()
+    bio = scrapy.Field(serializer=str)

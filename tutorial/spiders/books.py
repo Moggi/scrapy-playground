@@ -1,3 +1,5 @@
+# import os
+# import glob
 import scrapy
 from scrapy.http import Request
 from tutorial.items import BooksItem
@@ -75,3 +77,7 @@ class BooksSpider(scrapy.Spider):
         return response.xpath(
             f'//th[text()="{value}"]/following-sibling::td/text()'
         ).extract_first()
+
+    # def close(self, reason):
+    #     csv_file = max(glob.iglob('*.csv'), key=os.path.getctime)
+    #     os.rename(csv_file, 'foobar.csv')

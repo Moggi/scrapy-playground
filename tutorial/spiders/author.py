@@ -1,4 +1,5 @@
 import scrapy
+from tutorial.items import AuthorsItem
 
 
 class AuthorSpider(scrapy.Spider):
@@ -24,8 +25,8 @@ class AuthorSpider(scrapy.Spider):
             """Extract and clear from query"""
             return response.css(query).get(default='').strip()
 
-        yield {
-            'name': extract_with_css('h3.author-title::text'),
-            'birthdate': extract_with_css('.author-born-date::text'),
-            'bio': extract_with_css('.author-description::text'),
-        }
+        yield AuthorsItem(
+            name=extract_with_css('h3.author-title::text'),
+            birthdate=extract_with_css('.author-born-date::text'),
+            bio=extract_with_css('.author-description::text')
+        )
