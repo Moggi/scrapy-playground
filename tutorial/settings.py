@@ -72,6 +72,7 @@ DOWNLOAD_DELAY = 0.125
 # See https://doc.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
    'scrapy.pipelines.images.ImagesPipeline': 30,
+   'tutorial.pipelines.BooksImagePipeline': 40,
 }
 
 IMAGES_STORE = os.path.join(BASE_DIR, 'media')
