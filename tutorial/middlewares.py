@@ -4,8 +4,23 @@
 #
 # See documentation in:
 # https://doc.scrapy.org/en/latest/topics/spider-middleware.html
-
+import random
 from scrapy import signals
+
+
+# https://raw.githubusercontent.com/scrapinghub/testspiders/master/testspiders/middleware.py
+class RandomUserAgent(object):
+    """Randomly rotate user agents based on a list of predefined ones"""
+
+    def __init__(self, agents):
+        self.agents = agents
+
+    @classmethod
+    def from_crawler(cls, crawler):
+        return cls(crawler.settings.getlist('USER_AGENTS'))
+
+    def process_request(self, request, spider):
+        request.headers.setdefault('User-Agent', random.choice(self.agents))
 
 
 class TutorialSpiderMiddleware(object):
