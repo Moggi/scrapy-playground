@@ -12,3 +12,4 @@ Everything from Mar 2019
 - [IPython](https://pypi.org/project/ipython/)
 - [Selenium](https://pypi.org/project/selenium/)
 - [Pillow](https://pypi.org/project/Pillow/)
+- [PyMongo](https://pypi.org/project/pymongo/)

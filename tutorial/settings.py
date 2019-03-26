@@ -73,7 +73,12 @@ DOWNLOAD_DELAY = 0.125
 ITEM_PIPELINES = {
 #    'scrapy.pipelines.images.ImagesPipeline': 30,
 #    'tutorial.pipelines.BooksImagePipeline': 40,
+   'tutorial.pipelines.MongoDBPipeline': 50,
 }
+
+MONGODB_URI = 'mongodb://mongo:secret!@192.168.99.100:27017/'  # hot
+MONGODB_DB = 'books'
+MONGODB_COLLECTION = 'products'
 
 IMAGES_STORE = os.path.join(BASE_DIR, 'media')
 
