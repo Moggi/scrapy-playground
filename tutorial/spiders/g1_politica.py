@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from scrapy import Spider
-from scrapy import Spider
 from scrapy.http import Request
 from datetime import datetime
 

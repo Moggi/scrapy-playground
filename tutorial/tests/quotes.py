@@ -23,6 +23,7 @@ class TestQuotesSpider(unittest.TestCase):
                 self.assertIsInstance(item, QuotesItem)
                 self.assertIsNotNone(item['text'])
                 self.assertIsNotNone(item['author'])
+                self.assertIsNotNone(item['author_url'])
                 self.assertIsNotNone(item['tags'])
                 self.assertIsInstance(item['tags'], list)
             else:

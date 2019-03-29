@@ -1,8 +1,8 @@
-import scrapy
+from scrapy import Spider
 from tutorial.items import QuotesItem
 
 
-class QuotesSpider(scrapy.Spider):
+class QuotesSpider(Spider):
     name = "quotes"
     allowed_domains = ['quotes.toscrape.com']
     start_urls = ['http://quotes.toscrape.com/']
@@ -10,9 +10,11 @@ class QuotesSpider(scrapy.Spider):
     def parse(self, response):
         """Scrap all quotes from the page and follow all links"""
         for quote in response.css('div.quote'):
+            author_url = quote.xpath('.//span/a/@href').extract_first()
             yield QuotesItem(
                 text=quote.css('span.text::text').get(),
                 author=quote.css('small.author::text').get(),
+                author_url=response.urljoin(author_url),
                 tags=quote.css('div.tags a.tag::text').getall(),
             )
 

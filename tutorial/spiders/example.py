@@ -10,6 +10,4 @@ class ExampleSpider(scrapy.Spider):
     def parse(self, response):
         self.log('[Start Parsing] {}'.format('#'*26))
         page_title = response.xpath('//title/text()').extract_first()
-        # page_title = response.css('title::text').get()
         self.log(f'[Parsing:] {page_title}')
-        pass
