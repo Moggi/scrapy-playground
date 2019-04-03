@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from scrapy import Spider
 from scrapy.http import Request
+from datetime import datetime
 
 
 class CointimesSpider(Spider):
@@ -27,6 +28,9 @@ class CointimesSpider(Spider):
             '//*[@class="head-page__title"]/text()').extract_first()
         url = response.xpath(
             '//link[@rel="canonical"]/@href').extract_first()
+        time_published = response.xpath(
+            '//meta[@property="article:published_time"]/@content'
+        ).extract_first()
         description = response.xpath(
             '//meta[@name="description"]/@content').extract_first()
 
@@ -34,9 +38,17 @@ class CointimesSpider(Spider):
             '//*[@class="entry-content"]//following-sibling::p/text()'
         ).extract()
         content = '\n'.join(content)
+
+        author_name = response.xpath(
+            '//*[@class="author-bio__name"]/a/@title').extract_first()
+        author_link = response.xpath(
+            '//*[@class="author-bio__name"]/a/@href').extract_first()
         yield {
             'title': title,
             'url': url,
+            'time_published': time_published,
             'description': description,
             'content': content,
+            'author': author_name,
+            'author_link': author_link,
         }

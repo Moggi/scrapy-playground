@@ -7,7 +7,7 @@ Everything from Mar 2019
 
 ## Dependencies
 
-- Python 3    (3.6+)
+- Python 3    (3.7+)
 - [Scrapy](https://pypi.org/project/Scrapy/)
 - [IPython](https://pypi.org/project/ipython/)
 - [Selenium](https://pypi.org/project/selenium/)
